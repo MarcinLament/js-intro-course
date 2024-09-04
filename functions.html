@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Functions -->
+            <section>
+                <h2>Introduction to Functions</h2>
+                <ul>
+                    <li>Functions are reusable blocks of code designed to perform a specific task.</li>
+                    <li>They help in making code modular, reusable, and easier to manage.</li>
+                    <li>Functions can take inputs (parameters) and return outputs (return values).</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2: Function Declaration -->
+            <section>
+                <h2>Function Declaration</h2>
+                <ul>
+                    <li>Defines a function with a name, a list of parameters, and a block of code.</li>
+                    <li>Can be called before its declaration due to hoisting.</li>
+                </ul>
+                <pre><code class="javascript">
+function greet(name) {
+    return `Hello, ${name}!`;
+}
+
+console.log(greet("Alice")); // Output: Hello, Alice!
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: Function Expression -->
+            <section>
+                <h2>Function Expression</h2>
+                <ul>
+                    <li>Defines a function and assigns it to a variable.</li>
+                    <li>Not hoisted; can only be used after the assignment.</li>
+                </ul>
+                <pre><code class="javascript">
+const add = function(a, b) {
+    return a + b;
+};
+
+console.log(add(2, 3)); // Output: 5
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: Arrow Functions -->
+            <section>
+                <h2>Arrow Functions</h2>
+                <ul>
+                    <li>Concise syntax for writing functions, introduced in ES6.</li>
+                    <li>Does not have its own <code>this</code> context, which makes them great for callbacks.</li>
+                </ul>
+                <pre><code class="javascript">
+const multiply = (a, b) => a * b;
+
+console.log(multiply(4, 5)); // Output: 20
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: Parameters and Arguments -->
+            <section>
+                <h2>Parameters and Arguments</h2>
+                <ul>
+                    <li>Parameters are placeholders listed in the function definition.</li>
+                    <li>Arguments are the actual values passed to the function when called.</li>
+                </ul>
+                <pre><code class="javascript">
+function subtract(a, b) {
+    return a - b;
+}
+
+console.log(subtract(10, 4)); // Output: 6
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: Return Values -->
+            <section>
+                <h2>Return Values</h2>
+                <ul>
+                    <li>A function can return a value using the <code>return</code> statement.</li>
+                    <li>Once a return statement is executed, the function stops running and returns the specified value.</li>
+                </ul>
+                <pre><code class="javascript">
+function square(x) {
+    return x * x;
+}
+
+console.log(square(6)); // Output: 36
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Default Parameters -->
+            <section>
+                <h2>Default Parameters</h2>
+                <ul>
+                    <li>Allows parameters to have default values if no argument is passed.</li>
+                    <li>Introduced in ES6.</li>
+                </ul>
+                <pre><code class="javascript">
+function greet(name = "Guest") {
+    return `Hello, ${name}!`;
+}
+
+console.log(greet()); // Output: Hello, Guest!
+console.log(greet("Bob")); // Output: Hello, Bob!
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: Function Scope -->
+            <section>
+                <h2>Function Scope</h2>
+                <ul>
+                    <li>Variables declared inside a function are only accessible within that function.</li>
+                    <li>Functions can access variables from their outer scope (lexical scoping).</li>
+                </ul>
+                <pre><code class="javascript">
+function outer() {
+    let outerVar = "I'm outside!";
+    
+    function inner() {
+        let innerVar = "I'm inside!";
+        console.log(outerVar); // Can access outer scope
+    }
+
+    inner();
+    // console.log(innerVar); // Error: innerVar is not defined
+}
+
+outer();
+                </code></pre>
+            </section>
+
+            <!-- Slide 9: IIFE (Immediately Invoked Function Expression) -->
+            <section>
+                <h2>IIFE (Immediately Invoked Function Expression)</h2>
+                <ul>
+                    <li>A function that runs as soon as it is defined.</li>
+                    <li>Often used to create a private scope and avoid polluting the global scope.</li>
+                </ul>
+                <pre><code class="javascript">
+(function() {
+    console.log("This is an IIFE!");
+})(); // Output: This is an IIFE!
+                </code></pre>
+            </section>
+
+            <!-- Slide 10: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Functions are reusable blocks of code that can take inputs and return outputs.</li>
+                    <li>They can be defined as declarations, expressions, or arrow functions.</li>
+                    <li>Functions help keep your code organized, modular, and manageable.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 900,
+        });
+    </script>
+
+</body>
+
+</html>

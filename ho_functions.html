@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Higher-Order Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Higher-Order Functions -->
+            <section>
+                <h2>Introduction to Higher-Order Functions</h2>
+                <ul>
+                    <li>Higher-order functions are functions that operate on other functions.</li>
+                    <li>They can take functions as arguments, return functions, or both.</li>
+                    <li>Higher-order functions are a key concept in functional programming.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2: What is a Higher-Order Function? -->
+            <section>
+                <h2>What is a Higher-Order Function?</h2>
+                <ul>
+                    <li>A function that takes one or more functions as arguments or returns a function.</li>
+                    <li>Enables the creation of more abstract and reusable functions.</li>
+                </ul>
+                <pre><code class="javascript">
+// Higher-order function taking a function as an argument
+function repeat(action, times) {
+    for (let i = 0; i < times; i++) {
+        action(i);
+    }
+}
+
+repeat(console.log, 3); // Output: 0, 1, 2
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: Common Higher-Order Functions -->
+            <section>
+                <h2>Common Higher-Order Functions</h2>
+                <ul>
+                    <li><code>map()</code>: Transforms each element of an array using a provided function.</li>
+                    <li><code>filter()</code>: Creates a new array with elements that pass a test function.</li>
+                    <li><code>reduce()</code>: Reduces an array to a single value by applying a function cumulatively.</li>
+                </ul>
+                <pre><code class="javascript">
+let numbers = [1, 2, 3, 4, 5];
+
+// map
+let doubled = numbers.map(n => n * 2); // Output: [2, 4, 6, 8, 10]
+
+// filter
+let evens = numbers.filter(n => n % 2 === 0); // Output: [2, 4]
+
+// reduce
+let sum = numbers.reduce((acc, n) => acc + n, 0); // Output: 15
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: Functions as Arguments -->
+            <section>
+                <h2>Functions as Arguments</h2>
+                <ul>
+                    <li>Passing functions as arguments allows for flexible, reusable code.</li>
+                    <li>Common in event handling, callbacks, and array methods.</li>
+                </ul>
+                <pre><code class="javascript">
+function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+function processUserInput(callback) {
+    let name = prompt("Please enter your name.");
+    callback(name);
+}
+
+processUserInput(greet); // User enters "Alice", Output: Hello, Alice!
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: Returning Functions -->
+            <section>
+                <h2>Returning Functions</h2>
+                <ul>
+                    <li>Higher-order functions can return other functions.</li>
+                    <li>Useful for creating function generators, closures, and currying.</li>
+                </ul>
+                <pre><code class="javascript">
+function multiplier(factor) {
+    return function(number) {
+        return number * factor;
+    };
+}
+
+let double = multiplier(2);
+console.log(double(5)); // Output: 10
+
+let triple = multiplier(3);
+console.log(triple(5)); // Output: 15
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: Closures and Higher-Order Functions -->
+            <section>
+                <h2>Closures and Higher-Order Functions</h2>
+                <ul>
+                    <li>Closures allow a function to access variables from its outer scope, even after the outer function has finished executing.</li>
+                    <li>Combining closures with higher-order functions enables powerful patterns like data encapsulation and state management.</li>
+                </ul>
+                <pre><code class="javascript">
+function counter() {
+    let count = 0;
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+let increment = counter();
+console.log(increment()); // Output: 1
+console.log(increment()); // Output: 2
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Currying -->
+            <section>
+                <h2>Currying</h2>
+                <ul>
+                    <li>Currying is the process of transforming a function that takes multiple arguments into a sequence of functions that each take a single argument.</li>
+                    <li>Useful for creating partially applied functions and function composition.</li>
+                </ul>
+                <pre><code class="javascript">
+function add(a) {
+    return function(b) {
+        return a + b;
+    };
+}
+
+let addFive = add(5);
+console.log(addFive(3)); // Output: 8
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: Function Composition -->
+            <section>
+                <h2>Function Composition</h2>
+                <ul>
+                    <li>Combining two or more functions to produce a new function.</li>
+                    <li>Enables building complex functionality by combining simple, reusable functions.</li>
+                </ul>
+                <pre><code class="javascript">
+function compose(f, g) {
+    return function(x) {
+        return f(g(x));
+    };
+}
+
+function double(x) {
+    return x * 2;
+}
+
+function increment(x) {
+    return x + 1;
+}
+
+let doubleThenIncrement = compose(increment, double);
+console.log(doubleThenIncrement(5)); // Output: 11
+                </code></pre>
+            </section>
+
+            <!-- Slide 9: Practical Uses of Higher-Order Functions -->
+            <section>
+                <h2>Practical Uses of Higher-Order Functions</h2>
+                <ul>
+                    <li>Event handling in web applications (e.g., click, submit events).</li>
+                    <li>Creating reusable utility functions for data transformation.</li>
+                    <li>Managing asynchronous operations using callbacks, promises, or async/await.</li>
+                </ul>
+                <pre><code class="javascript">
+document.getElementById("myButton").addEventListener("click", () => {
+    console.log("Button clicked!");
+});
+
+// Array transformation
+let names = ["Alice", "Bob", "Charlie"];
+let upperNames = names.map(name => name.toUpperCase());
+console.log(upperNames); // Output: ["ALICE", "BOB", "CHARLIE"]
+                </code></pre>
+            </section>
+
+            <!-- Slide 10: Common Mistakes with Higher-Order Functions -->
+            <section>
+                <h2>Common Mistakes with Higher-Order Functions</h2>
+                <ul>
+                    <li>Not handling the context of <code>this</code> properly in callbacks and closures.</li>
+                    <li>Overusing higher-order functions, leading to code that's hard to read and debug.</li>
+                    <li>Not considering performance implications when chaining multiple higher-order functions.</li>
+                </ul>
+                <pre><code class="javascript">
+let obj = {
+    value: 10,
+    increment() {
+        setTimeout(function() {
+            console.log(this.value); // Output: undefined (because `this` is not bound)
+        }, 1000);
+    }
+};
+
+obj.increment();
+                </code></pre>
+            </section>
+
+            <!-- Slide 11: Best Practices -->
+            <section>
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Use higher-order functions to simplify and reduce repetitive code.</li>
+                    <li>Be mindful of <code>this</code> context; use arrow functions or <code>bind()</code> when needed.</li>
+                    <li>Write clear and concise functions; avoid deeply nested or overly complex higher-order functions.</li>
+                    <li>Test higher-order functions thoroughly, especially when they return functions or operate on data asynchronously.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 12: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Higher-order functions are a powerful tool in JavaScript, enabling more abstract and flexible code.</li>
+                    <li>They can take functions as arguments, return functions, or both.</li>
+                    <li>Common uses include array transformations, event handling, and asynchronous operations.</li>
+                    <li>Mastering higher-order functions allows for more expressive and modular programming.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 900,
+        });
+    </script>
+
+</body>
+
+</html>

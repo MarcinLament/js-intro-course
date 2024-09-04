@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Conditional Statements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Conditional Statements -->
+            <section>
+                <h2>Introduction to Conditional Statements</h2>
+                <ul>
+                    <li>Conditional statements allow your code to make decisions and execute different code blocks based on conditions.</li>
+                    <li>They are essential for controlling the flow of a program.</li>
+                    <li>Main types: <code>if</code>, <code>else if</code>, <code>else</code>, <code>switch</code>, and <code>ternary operator</code>.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2: if Statement -->
+            <section>
+                <h2><code>if</code> Statement</h2>
+                <ul>
+                    <li>Executes a block of code if a specified condition is true.</li>
+                </ul>
+                <pre><code class="javascript">
+if (condition) {
+    // code to be executed if the condition is true
+}
+                </code></pre>
+                <p>Example:</p>
+                <pre><code class="javascript">
+let score = 85;
+
+if (score > 80) {
+    console.log("Great job!"); // Output: Great job!
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: if-else Statement -->
+            <section>
+                <h2><code>if-else</code> Statement</h2>
+                <ul>
+                    <li>Provides an alternative block of code to execute if the condition is false.</li>
+                </ul>
+                <pre><code class="javascript">
+if (condition) {
+    // code if condition is true
+} else {
+    // code if condition is false
+}
+                </code></pre>
+                <p>Example:</p>
+                <pre><code class="javascript">
+let age = 16;
+
+if (age >= 18) {
+    console.log("You can vote.");
+} else {
+    console.log("You are too young to vote."); // Output: You are too young to vote.
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: if-else if-else Statement -->
+            <section>
+                <h2><code>if-else</code> Statement</h2>
+                <ul>
+                    <li>Allows checking multiple conditions.</li>
+                    <li>The first condition that evaluates to true has its block executed.</li>
+                </ul>
+                <pre><code class="javascript">
+if (condition1) {
+    // code if condition1 is true
+} else if (condition2) {
+    // code if condition2 is true
+} else {
+    // code if neither condition is true
+}
+                </code></pre>
+                <p>Example:</p>
+                <pre><code class="javascript">
+let temperature = 30;
+
+if (temperature > 35) {
+    console.log("It's too hot!");
+} else if (temperature > 25) {
+    console.log("The weather is nice."); // Output: The weather is nice.
+} else {
+    console.log("It's a bit chilly.");
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: switch Statement -->
+            <section>
+                <h2><code>switch</code> Statement</h2>
+                <ul>
+                    <li>Executes one block of code from multiple choices based on a variable's value.</li>
+                    <li>Useful for checking multiple possible values of a variable.</li>
+                </ul>
+                <pre><code class="javascript">
+switch (expression) {
+    case value1:
+        // code to run if expression === value1
+        break;
+    case value2:
+        // code to run if expression === value2
+        break;
+    default:
+        // code to run if no case matches
+}
+                </code></pre>
+                <p>Example:</p>
+                <pre><code class="javascript">
+let day = "Monday";
+
+switch (day) {
+    case "Monday":
+        console.log("Start of the work week."); // Output: Start of the work week.
+        break;
+    case "Friday":
+        console.log("End of the work week.");
+        break;
+    default:
+        console.log("It's a regular day.");
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: Ternary Operator -->
+            <section>
+                <h2>Ternary Operator</h2>
+                <ul>
+                    <li>A shorthand way to write an <code>if-else</code> statement.</li>
+                    <li>Syntax: <code>condition ? expressionIfTrue : expressionIfFalse;</code></li>
+                </ul>
+                <p>Example:</p>
+                <pre><code class="javascript">
+let isMember = true;
+
+let fee = isMember ? "$5" : "$10";
+console.log(fee); // Output: $5
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Conditional statements control the flow of your JavaScript program.</li>
+                    <li>Use <code>if</code>, <code>else if</code>, and <code>else</code> for simple conditions.</li>
+                    <li>Use <code>switch</code> for multiple possible values of a variable.</li>
+                    <li>The ternary operator offers a compact form of <code>if-else</code>.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1400,
+          height: 1100,
+        });
+    </script>
+
+</body>
+
+</html>

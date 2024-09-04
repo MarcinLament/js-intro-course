@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Scopes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Scopes -->
+            <section>
+                <h2>Introduction to Scopes</h2>
+                <ul>
+                    <li>Scope determines the visibility and accessibility of variables and functions in JavaScript.</li>
+                    <li>Understanding scope is crucial for avoiding errors and writing clean, maintainable code.</li>
+                    <li>Main types: <code>Global Scope</code>, <code>Local/Function Scope</code>, <code>Block Scope</code>, and <code>Lexical Scope</code>.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2: Global Scope -->
+            <section>
+                <h2>Global Scope</h2>
+                <ul>
+                    <li>Variables declared outside any function or block are in the global scope.</li>
+                    <li>Accessible from anywhere in the code.</li>
+                    <li>Use global variables sparingly to avoid potential conflicts and bugs.</li>
+                </ul>
+                <pre><code class="javascript">
+let globalVar = "I am global";
+
+function showGlobal() {
+    console.log(globalVar); // Output: I am global
+}
+
+showGlobal();
+console.log(globalVar); // Output: I am global
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: Function Scope -->
+            <section>
+                <h2>Function Scope</h2>
+                <ul>
+                    <li>Variables declared inside a function are scoped to that function.</li>
+                    <li>Cannot be accessed from outside the function.</li>
+                </ul>
+                <pre><code class="javascript">
+function showMessage() {
+    let message = "Hello from inside a function";
+    console.log(message); // Output: Hello from inside a function
+}
+
+showMessage();
+console.log(message); // Error: message is not defined
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: Block Scope -->
+            <section>
+                <h2>Block Scope</h2>
+                <ul>
+                    <li>Variables declared with <code>let</code> or <code>const</code> inside curly braces <code>{}</code> are block-scoped.</li>
+                    <li>Block scope is limited to loops, conditionals, or any block statement.</li>
+                </ul>
+                <pre><code class="javascript">
+if (true) {
+    let blockScopedVar = "I'm block-scoped";
+    console.log(blockScopedVar); // Output: I'm block-scoped
+}
+
+console.log(blockScopedVar); // Error: blockScopedVar is not defined
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: Lexical Scope -->
+            <section>
+                <h2>Lexical Scope</h2>
+                <ul>
+                    <li>Functions are executed using the scope in which they were defined, not where they are invoked.</li>
+                    <li>Allows access to variables from the outer scope within a nested function.</li>
+                </ul>
+                <pre><code class="javascript">
+function outerFunction() {
+    let outerVar = "I am outside!";
+
+    function innerFunction() {
+        console.log(outerVar); // Output: I am outside!
+    }
+
+    innerFunction();
+}
+
+outerFunction();
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: Scope Chain -->
+            <section>
+                <h2>Scope Chain</h2>
+                <ul>
+                    <li>When a variable is used, JavaScript starts looking in the local scope, then moves up the scope chain until it finds the variable or reaches the global scope.</li>
+                    <li>If the variable isn't found, JavaScript throws a <code>ReferenceError</code>.</li>
+                </ul>
+                <pre><code class="javascript">
+let globalVar = "Global";
+
+function first() {
+    let firstVar = "First Function";
+
+    function second() {
+        let secondVar = "Second Function";
+        console.log(globalVar); // Output: Global
+        console.log(firstVar);  // Output: First Function
+    }
+
+    second();
+}
+
+first();
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Hoisting and Scope -->
+            <section>
+                <h2>Hoisting and Scope</h2>
+                <ul>
+                    <li>Variable and function declarations are hoisted to the top of their scope.</li>
+                    <li>Hoisting does not move initializations, only declarations.</li>
+                </ul>
+                <pre><code class="javascript">
+console.log(hoistedVar); // Output: undefined
+var hoistedVar = "I am hoisted";
+
+// Equivalent to:
+var hoistedVar;
+console.log(hoistedVar); // Output: undefined
+hoistedVar = "I am hoisted";
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: Closures -->
+            <section>
+                <h2>Closures</h2>
+                <ul>
+                    <li>A closure is a function that retains access to its lexical scope, even when the function is executed outside that scope.</li>
+                    <li>Useful for creating private variables and functions.</li>
+                </ul>
+                <pre><code class="javascript">
+function createCounter() {
+    let count = 0;
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+const counter = createCounter();
+console.log(counter()); // Output: 1
+console.log(counter()); // Output: 2
+                </code></pre>
+            </section>
+
+            <!-- Slide 9: Common Mistakes with Scopes -->
+            <section>
+                <h2>Common Mistakes with Scopes</h2>
+                <ul>
+                    <li>Using global variables unintentionally, leading to potential conflicts.</li>
+                    <li>Not understanding block scope and using <code>var</code> instead of <code>let</code> or <code>const</code>.</li>
+                    <li>Misunderstanding <code>this</code> context, especially in nested functions or callbacks.</li>
+                </ul>
+                <pre><code class="javascript">
+if (true) {
+    var globalLeak = "I'm accidentally global!";
+}
+
+console.log(globalLeak); // Output: I'm accidentally global!
+                </code></pre>
+            </section>
+
+            <!-- Slide 10: Best Practices -->
+            <section>
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Minimize the use of global variables to avoid potential conflicts.</li>
+                    <li>Prefer <code>let</code> and <code>const</code> over <code>var</code> for block scope.</li>
+                    <li>Use closures to create private variables and avoid polluting the global scope.</li>
+                    <li>Understand the scope chain to predict where variables are accessible.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 11: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>JavaScript scope defines where variables and functions are accessible.</li>
+                    <li>Different types of scope include global, function, block, and lexical scope.</li>
+                    <li>Understanding scope helps in writing clean, efficient, and bug-free code.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 900,
+        });
+    </script>
+
+</body>
+
+</html>

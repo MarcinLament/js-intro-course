@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Advanced Objects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Advanced Objects -->
+            <section>
+                <h2>Introduction to Advanced Objects</h2>
+                <ul>
+                    <li>Advanced objects provide more control and flexibility in JavaScript programming.</li>
+                    <li>They include concepts like prototypes, classes, inheritance, getters/setters, and more.</li>
+                    <li>Understanding advanced objects helps in writing more robust, maintainable, and scalable code.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2: Prototypes and Prototypal Inheritance -->
+            <section>
+                <h2>Prototypes and Prototypal Inheritance</h2>
+                <ul>
+                    <li>Every JavaScript object has a prototype, which is another object it inherits properties from.</li>
+                    <li>Prototypal inheritance allows objects to share properties and methods.</li>
+                </ul>
+                <pre><code class="javascript">
+let animal = {
+    eats: true
+};
+
+let dog = Object.create(animal);
+dog.barks = true;
+
+console.log(dog.eats); // Output: true (inherited from animal)
+console.log(dog.barks); // Output: true
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: Classes and Constructors -->
+            <section>
+                <h2>Classes and Constructors</h2>
+                <ul>
+                    <li>Classes are syntactical sugar over JavaScript’s existing prototypal inheritance.</li>
+                    <li>They provide a clear syntax for creating objects with shared methods and properties.</li>
+                    <li>Constructors are functions used with the <code>new</code> keyword to create new object instances.</li>
+                </ul>
+                <pre><code class="javascript">
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+}
+
+let alice = new Person("Alice", 30);
+alice.greet(); // Output: Hello, my name is Alice
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: Inheritance with Classes -->
+            <section>
+                <h2>Inheritance with Classes</h2>
+                <ul>
+                    <li>Classes support inheritance, allowing new classes to extend existing ones.</li>
+                    <li>Inheritance helps to create a hierarchy of objects, sharing common functionality.</li>
+                </ul>
+                <pre><code class="javascript">
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        console.log(`${this.name} makes a noise.`);
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        console.log(`${this.name} barks.`);
+    }
+}
+
+let dog = new Dog("Rex");
+dog.speak(); // Output: Rex barks.
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: Getters and Setters -->
+            <section>
+                <h2>Getters and Setters</h2>
+                <ul>
+                    <li>Getters and setters allow you to define methods for getting and setting property values.</li>
+                    <li>They provide controlled access to object properties.</li>
+                </ul>
+                <pre><code class="javascript">
+let person = {
+    firstName: "John",
+    lastName: "Doe",
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    },
+    set fullName(name) {
+        [this.firstName, this.lastName] = name.split(" ");
+    }
+};
+
+console.log(person.fullName); // Output: John Doe
+person.fullName = "Jane Smith";
+console.log(person.firstName); // Output: Jane
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: The `this` Context in Classes -->
+            <section>
+                <h2>The <code>this</code> Context in Classes</h2>
+                <ul>
+                    <li>In classes, <code>this</code> refers to the instance of the class.</li>
+                    <li>Methods and properties of the class instance can be accessed using <code>this</code>.</li>
+                </ul>
+                <pre><code class="javascript">
+class Car {
+    constructor(make, model) {
+        this.make = make;
+        this.model = model;
+    }
+
+    displayInfo() {
+        console.log(`Car: ${this.make} ${this.model}`);
+    }
+}
+
+let car = new Car("Toyota", "Corolla");
+car.displayInfo(); // Output: Car: Toyota Corolla
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Object Property Descriptors -->
+            <section>
+                <h2>Object Property Descriptors</h2>
+                <ul>
+                    <li>Property descriptors provide control over object property behavior.</li>
+                    <li>Properties can be configured as writable, enumerable, and configurable.</li>
+                </ul>
+                <pre><code class="javascript">
+let user = {};
+Object.defineProperty(user, "name", {
+    value: "Alice",
+    writable: false,   // Cannot be modified
+    enumerable: true,  // Can be looped over
+    configurable: false // Cannot be deleted or redefined
+});
+
+console.log(user.name); // Output: Alice
+user.name = "Bob"; // Fails silently or throws in strict mode
+console.log(user.name); // Output: Alice
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: The `super` Keyword -->
+            <section>
+                <h2>The <code>super</code> Keyword</h2>
+                <ul>
+                    <li><code>super</code> is used to call methods from the parent class.</li>
+                    <li>Commonly used in constructors and overridden methods.</li>
+                </ul>
+                <pre><code class="javascript">
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        console.log(`${this.name} makes a noise.`);
+    }
+}
+
+class Cat extends Animal {
+    constructor(name) {
+        super(name); // Calls the parent class constructor
+    }
+
+    speak() {
+        super.speak(); // Calls the parent class method
+        console.log(`${this.name} meows.`);
+    }
+}
+
+let cat = new Cat("Whiskers");
+cat.speak(); // Output: Whiskers makes a noise. Whiskers meows.
+                </code></pre>
+            </section>
+
+            <!-- Slide 9: Mixins -->
+            <section>
+                <h2>Mixins</h2>
+                <ul>
+                    <li>Mixins allow objects or classes to be combined by copying properties from one object to another.</li>
+                    <li>They provide a way to share reusable functionality between classes.</li>
+                </ul>
+                <pre><code class="javascript">
+let sayHiMixin = {
+    sayHi() {
+        console.log(`Hello, ${this.name}`);
+    }
+};
+
+class User {
+    constructor(name) {
+        this.name = name;
+    }
+}
+
+Object.assign(User.prototype, sayHiMixin);
+
+let user = new User("Alice");
+user.sayHi(); // Output: Hello, Alice
+                </code></pre>
+            </section>
+
+            <!-- Slide 10: Private Properties and Methods -->
+            <section>
+                <h2>Private Properties and Methods</h2>
+                <ul>
+                    <li>Private properties and methods are not accessible outside of the class.</li>
+                    <li>Achieved using the <code>#</code> syntax (introduced in ES2021) or closures.</li>
+                </ul>
+                <pre><code class="javascript">
+class Person {
+    #age = 30; // Private field
+
+    getAge() {
+        return this.#age;
+    }
+}
+
+let person = new Person();
+console.log(person.getAge()); // Output: 30
+console.log(person.#age); // SyntaxError: Private field '#age' must be declared in an enclosing class
+                </code></pre>
+            </section>
+
+            <!-- Slide 11: Common Mistakes with Advanced Objects -->
+            <section>
+                <h2>Common Mistakes with Advanced Objects</h2>
+                <ul>
+                    <li>Misunderstanding <code>this</code> context, especially in nested functions or callbacks.</li>
+                    <li>Overusing inheritance where composition might be more appropriate.</li>
+                    <li>Not using <code>super</code> correctly in extended classes.</li>
+                </ul>
+                <pre><code class="javascript">
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        console.log(`${this.name} makes a noise.`);
+    }
+}
+
+class Bird extends Animal {
+    speak() {
+        console.log(`${this.name} chirps.`);
+        // Incorrect: not calling super, missing base class functionality
+    }
+}
+
+let bird = new Bird("Tweety");
+bird.speak(); // Output: Tweety chirps.
+                </code></pre>
+            </section>
+
+            <!-- Slide 12: Best Practices -->
+            <section>
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Favor composition over inheritance for better code reuse and flexibility.</li>
+                    <li>Use classes for clear, concise syntax when creating objects with shared methods.</li>
+                    <li>Encapsulate data and behavior with private fields and methods when appropriate.</li>
+                    <li>Be mindful of the <code>this</code> context in methods and constructors.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 13: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Advanced object features in JavaScript, such as prototypes, classes, inheritance, and mixins, offer powerful tools for building complex applications.</li>
+                    <li>Mastering these features allows for cleaner, more modular, and maintainable code.</li>
+                    <li>Understanding the nuances of <code>this</code>, private properties, and method inheritance is crucial for advanced JavaScript development.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 900,
+        });
+    </script>
+
+</body>
+
+</html>

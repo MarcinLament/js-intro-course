@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Variables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <section>
+                <h2>Introduction to Variables in JavaScript</h2>
+                <ul>
+                    <li><strong>Variables</strong> are containers for storing data values.</li>
+                    <li>They allow you to <strong>store and manipulate data</strong> within your programs.</li>
+                    <li><strong>Examples of Data Types:</strong> <code>Numbers</code>, <code>Strings</code>, <code>Booleans</code>, <code>Arrays</code>, <code>Objects</code>.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2 -->
+            <section>
+                <h2>Variable Types</h2>
+                <ul>
+                    <li><strong>Numbers:</strong> Store numerical values (e.g., <code>let age = 30;</code>).</li>
+                    <li><strong>Strings:</strong> Store text (e.g., <code>let name = "Alice";</code>).</li>
+                    <li><strong>Booleans:</strong> True or false values (e.g., <code>let isLoggedIn = true;</code>).</li>
+                    <li><strong>Null:</strong> Represents the absence of value (<code>let emptyValue = null;</code>).</li>
+                    <li><strong>Undefined:</strong> Variables declared but not assigned (<code>let notAssigned;</code>).</li>
+                    <li><strong>Objects:</strong> Collections of key-value pairs (<code>let person = { name: "John", age: 25 };</code>).</li>
+                    <li><strong>Arrays:</strong> Ordered collections (<code>let fruits = ["Apple", "Banana"];</code>).</li>
+                </ul>
+            </section>
+
+            <!-- Slide 4 -->
+            <section>
+                <h2>Declaring Variables</h2>
+                <ul>
+                    <li><strong>var:</strong> Function-scoped or globally-scoped. Can be re-declared and updated. Example: <code>var color = "blue";</code></li>
+                    <li><strong>let:</strong> Block-scoped. Can be updated but not re-declared in the same scope. Example: <code>let score = 10;</code></li>
+                    <li><strong>const:</strong> Block-scoped. Cannot be updated or re-declared. Example: <code>const PI = 3.14;</code></li>
+                </ul>
+            </section>
+
+            <!-- Slide 5 -->
+            <section>
+                <h2>Differences Between var, let, and const</h2>
+                <ul>
+                    <li><strong>Scope:</strong> <code>var</code> is function/global scope, <code>let</code> and <code>const</code> are block scope.</li>
+                    <li><strong>Hoisting:</strong> <code>var</code> declarations are hoisted, but initialization isn’t. <code>let</code> and <code>const</code> are hoisted but not accessible before declaration.</li>
+                    <li><strong>Re-declaration and Re-assignment:</strong> <code>var</code> allows both. <code>let</code> allows re-assignment, but not re-declaration. <code>const</code> allows neither.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 6 -->
+            <section>
+                <h2>Examples of Variable Scope and Hoisting</h2>
+                <pre><code class="javascript">
+// Hoisting with var
+console.log(hoistedVar); // Output: undefined
+var hoistedVar = "This is hoisted";
+
+// Block-scoped with let and const
+if (true) {
+    let blockVar = "Block Scoped";
+    console.log(blockVar); // Output: Block Scoped
+}
+console.log(blockVar); // Error: blockVar is not defined
+                </code></pre>
+            </section>
+
+            <!-- Slide 7 -->
+            <section>
+                <h2>Best Practices for Using Variables</h2>
+                <ul>
+                    <li><strong>Use let and const Instead of var:</strong> Safer scoping and avoids unexpected behavior.</li>
+                    <li><strong>Use Descriptive Names:</strong> Improves readability (e.g., <code>userAge</code> instead of <code>x</code>).</li>
+                    <li><strong>Camel Case Naming:</strong> Follow JavaScript conventions (e.g., <code>firstName</code>).</li>
+                    <li><strong>Avoid Global Variables:</strong> Reduces the risk of conflicts and bugs.</li>
+                    <li><strong>Initialize Variables:</strong> Avoids <code>undefined</code> values and potential errors.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 8 -->
+            <section>
+                <h2>Common Mistakes and Tips</h2>
+                <ul>
+                    <li><strong>Re-declaring Variables with let and const:</strong> Avoid redeclaration errors.</li>
+                    <pre><code class="javascript">
+let x = 10;
+let x = 20; // Error: Identifier 'x' has already been declared
+                    </code></pre>
+                    <li><strong>Avoid Unintentional Globals:</strong> Always declare variables properly to avoid global scope leaks.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 9 -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Variables are fundamental in JavaScript for storing data.</li>
+                    <li>Choose the right declaration (<code>var</code>, <code>let</code>, <code>const</code>) based on the need.</li>
+                    <li>Follow best practices for clean, maintainable, and error-free code.</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 900,
+        });
+    </script>
+</body>
+</html>

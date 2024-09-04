@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Loops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Loops -->
+            <section>
+                <h2>Introduction to Loops</h2>
+                <ul>
+                    <li>Loops allow you to execute a block of code repeatedly, based on a condition.</li>
+                    <li>Useful for iterating over arrays, performing repetitive tasks, and reducing code duplication.</li>
+                    <li>Main types: <code>for</code>, <code>while</code>, <code>do...while</code>, and <code>for...of</code>, <code>for...in</code>.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2: for Loop -->
+            <section>
+                <h2><code>for</code> Loop</h2>
+                <ul>
+                    <li>The most commonly used loop, perfect for when you know how many times you want to iterate.</li>
+                    <li>Syntax: Initialization, Condition, Increment/Decrement.</li>
+                </ul>
+                <pre><code class="javascript">
+for (let i = 0; i < 5; i++) {
+    console.log(i); // Output: 0, 1, 2, 3, 4
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: while Loop -->
+            <section>
+                <h2><code>while</code> Loop</h2>
+                <ul>
+                    <li>Executes as long as the specified condition is true.</li>
+                    <li>Ideal for when the number of iterations is not known beforehand.</li>
+                </ul>
+                <pre><code class="javascript">
+let count = 0;
+
+while (count < 3) {
+    console.log(count); // Output: 0, 1, 2
+    count++;
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: do...while Loop -->
+            <section>
+                <h2><code>do...while</code> Loop</h2>
+                <ul>
+                    <li>Executes the code block once before checking the condition.</li>
+                    <li>Useful when you need the loop to run at least once.</li>
+                </ul>
+                <pre><code class="javascript">
+let num = 0;
+
+do {
+    console.log(num); // Output: 0, 1, 2
+    num++;
+} while (num < 3);
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: for...of Loop -->
+            <section>
+                <h2><code>for...of</code> Loop</h2>
+                <ul>
+                    <li>Iterates over iterable objects like arrays, strings, or other collections.</li>
+                    <li>Provides the values of the iterable, making it ideal for working directly with data.</li>
+                </ul>
+                <pre><code class="javascript">
+let fruits = ["Apple", "Banana", "Cherry"];
+
+for (let fruit of fruits) {
+    console.log(fruit); // Output: Apple, Banana, Cherry
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: for...in Loop -->
+            <section>
+                <h2><code>for...in</code> Loop</h2>
+                <ul>
+                    <li>Iterates over the enumerable properties of an object.</li>
+                    <li>Returns the keys (property names) of the object, not the values.</li>
+                    <li>Commonly used with objects, but not recommended for arrays.</li>
+                </ul>
+                <pre><code class="javascript">
+let person = { name: "Alice", age: 25 };
+
+for (let key in person) {
+    console.log(key, person[key]); // Output: name Alice, age 25
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Nested Loops -->
+            <section>
+                <h2>Nested Loops</h2>
+                <ul>
+                    <li>Loops inside other loops are called nested loops.</li>
+                    <li>Useful for iterating over multi-dimensional structures like arrays within arrays.</li>
+                </ul>
+                <pre><code class="javascript">
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+for (let row of matrix) {
+    for (let num of row) {
+        console.log(num); // Output: 1, 2, 3, 4, 5, 6, 7, 8, 9
+    }
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: Break and Continue -->
+            <section>
+                <h2>Break and Continue</h2>
+                <ul>
+                    <li><code>break</code>: Exits the loop immediately, stopping all iterations.</li>
+                    <li><code>continue</code>: Skips the current iteration and moves to the next one.</li>
+                </ul>
+                <pre><code class="javascript">
+for (let i = 0; i < 5; i++) {
+    if (i === 3) {
+        break; // Stops the loop at i = 3
+    }
+    console.log(i); // Output: 0, 1, 2
+}
+
+for (let i = 0; i < 5; i++) {
+    if (i === 2) {
+        continue; // Skips the current iteration when i = 2
+    }
+    console.log(i); // Output: 0, 1, 3, 4
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 9: Common Mistakes with Loops -->
+            <section>
+                <h2>Common Mistakes with Loops</h2>
+                <ul>
+                    <li>Infinite loops due to incorrect conditions.</li>
+                    <li>Modifying the array or collection while looping through it.</li>
+                    <li>Using <code>for...in</code> with arrays, leading to unexpected behavior.</li>
+                </ul>
+                <pre><code class="javascript">
+let i = 0;
+while (i < 5) {
+    // if i++ is forgotten, this loop will run forever!
+    console.log(i);
+}
+
+// Avoid modifying arrays directly in loops like forEach()
+let numbers = [1, 2, 3, 4];
+numbers.forEach((num, index) => {
+    numbers.push(num + 4); // Modifies the array while iterating
+});
+                </code></pre>
+            </section>
+
+            <!-- Slide 10: Best Practices -->
+            <section>
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Use the appropriate loop for your task (e.g., <code>for</code> for counting, <code>for...of</code> for iterables).</li>
+                    <li>Avoid modifying collections during iteration; use <code>map()</code>, <code>filter()</code>, or other array methods when possible.</li>
+                    <li>Be cautious with nested loops as they can lead to performance issues.</li>
+                    <li>Always validate loop conditions to prevent infinite loops.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 11: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Loops are essential for repetitive tasks and iterating over data structures.</li>
+                    <li>Different loops serve different purposes: <code>for</code>, <code>while</code>, <code>do...while</code>, <code>for...of</code>, and <code>for...in</code>.</li>
+                    <li>Understanding loops helps you write efficient and clean code.</li>
+                    <li>Always be mindful of the conditions and side effects when working with loops.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 900,
+        });
+    </script>
+
+</body>
+
+</html>

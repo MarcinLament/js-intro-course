@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Iterators</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Iterators -->
+            <section>
+                <h2>Introduction to Iterators</h2>
+                <ul>
+                    <li>Iterators are objects that allow you to traverse through data structures one element at a time.</li>
+                    <li>They provide a standardized way to loop over data collections like arrays, strings, and more.</li>
+                    <li>Iterators are a key component of the ES6 iteration protocol.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 2: What is an Iterator? -->
+            <section>
+                <h2>What is an Iterator?</h2>
+                <ul>
+                    <li>An iterator is an object that implements the <code>Iterator</code> protocol by having a <code>next()</code> method.</li>
+                    <li>The <code>next()</code> method returns an object with two properties: <code>value</code> and <code>done</code>.</li>
+                    <li>The <code>done</code> property indicates whether the iteration is complete.</li>
+                </ul>
+                <pre><code class="javascript">
+let array = [1, 2, 3];
+let iterator = array[Symbol.iterator]();
+
+console.log(iterator.next()); // Output: { value: 1, done: false }
+console.log(iterator.next()); // Output: { value: 2, done: false }
+console.log(iterator.next()); // Output: { value: 3, done: false }
+console.log(iterator.next()); // Output: { value: undefined, done: true }
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: Iterable Protocol -->
+            <section>
+                <h2>Iterable Protocol</h2>
+                <ul>
+                    <li>An object is iterable if it implements the <code>Iterable</code> protocol by having a <code>[Symbol.iterator]</code> method.</li>
+                    <li>Built-in iterables include arrays, strings, maps, sets, and more.</li>
+                    <li>Custom objects can be made iterable by implementing the <code>[Symbol.iterator]</code> method.</li>
+                </ul>
+                <pre><code class="javascript">
+let iterableObject = {
+    [Symbol.iterator]() {
+        let step = 0;
+        return {
+            next() {
+                step++;
+                if (step <= 3) {
+                    return { value: step, done: false };
+                }
+                return { value: undefined, done: true };
+            }
+        };
+    }
+};
+
+for (let value of iterableObject) {
+    console.log(value); // Output: 1, 2, 3
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: Using Iterators with for...of Loop -->
+            <section>
+                <h2>Using Iterators with <code>for...of</code> Loop</h2>
+                <ul>
+                    <li>The <code>for...of</code> loop automatically calls the <code>[Symbol.iterator]</code> method on the object being iterated.</li>
+                    <li>It provides a simple way to loop through the values of an iterable object.</li>
+                </ul>
+                <pre><code class="javascript">
+let numbers = [10, 20, 30];
+
+for (let number of numbers) {
+    console.log(number); // Output: 10, 20, 30
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: Creating Custom Iterators -->
+            <section>
+                <h2>Creating Custom Iterators</h2>
+                <ul>
+                    <li>Custom iterators can be created by implementing the <code>[Symbol.iterator]</code> method in objects.</li>
+                    <li>Allows for customized iteration logic beyond simple arrays and collections.</li>
+                </ul>
+                <pre><code class="javascript">
+let customRange = {
+    start: 1,
+    end: 5,
+    [Symbol.iterator]() {
+        let current = this.start;
+        let end = this.end;
+        return {
+            next() {
+                if (current <= end) {
+                    return { value: current++, done: false };
+                }
+                return { value: undefined, done: true };
+            }
+        };
+    }
+};
+
+for (let num of customRange) {
+    console.log(num); // Output: 1, 2, 3, 4, 5
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: Generators as Iterators -->
+            <section>
+                <h2>Generators as Iterators</h2>
+                <ul>
+                    <li>Generators are special functions that can be paused and resumed, making them perfect for creating iterators.</li>
+                    <li>Defined using the <code>function*</code> syntax and <code>yield</code> keyword.</li>
+                </ul>
+                <pre><code class="javascript">
+function* generateSequence() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+let generator = generateSequence();
+
+for (let value of generator) {
+    console.log(value); // Output: 1, 2, 3
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Iterating Over Different Data Structures -->
+            <section>
+                <h2>Iterating Over Different Data Structures</h2>
+                <ul>
+                    <li>Arrays, strings, maps, sets, and DOM NodeLists are iterable by default.</li>
+                    <li>Iterating over Maps returns key-value pairs, while Sets return unique values.</li>
+                </ul>
+                <pre><code class="javascript">
+let map = new Map([["a", 1], ["b", 2]]);
+for (let [key, value] of map) {
+    console.log(`${key}: ${value}`); // Output: a: 1, b: 2
+}
+
+let set = new Set([1, 2, 3]);
+for (let value of set) {
+    console.log(value); // Output: 1, 2, 3
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: Common Mistakes with Iterators -->
+            <section>
+                <h2>Common Mistakes with Iterators</h2>
+                <ul>
+                    <li>Forgetting to implement <code>[Symbol.iterator]</code> in custom iterables.</li>
+                    <li>Not handling <code>done</code> correctly in custom iterators, leading to infinite loops.</li>
+                    <li>Using <code>for...in</code> instead of <code>for...of</code> for iterables, which iterates over keys instead of values.</li>
+                </ul>
+                <pre><code class="javascript">
+// Incorrect: Using for...in for iterables
+let array = [10, 20, 30];
+for (let index in array) {
+    console.log(index); // Output: 0, 1, 2 (indices)
+}
+
+// Correct: Using for...of for iterables
+for (let value of array) {
+    console.log(value); // Output: 10, 20, 30
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 9: Best Practices -->
+            <section>
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Use iterators and <code>for...of</code> for clean and readable looping through collections.</li>
+                    <li>Prefer generators for custom iterators for simplicity and power.</li>
+                    <li>Understand the difference between <code>for...of</code> and <code>for...in</code> to avoid errors.</li>
+                    <li>Always handle the <code>done</code> state properly in custom iterators.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 10: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Iterators and the Iterable protocol provide a standard way to loop through data collections in JavaScript.</li>
+                    <li>They allow for custom iteration logic and can be implemented with custom objects and generators.</li>
+                    <li>Using iterators correctly can lead to more modular, flexible, and readable code.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 900,
+        });
+    </script>
+
+</body>
+
+</html>

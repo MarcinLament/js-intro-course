@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Arrays</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/dracula.min.css">
+    <!-- Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Slide 1: Introduction to Arrays -->
+            <section>
+                <h2>Introduction to Arrays</h2>
+                <ul>
+                    <li>Arrays are used to store multiple values in a single variable.</li>
+                    <li>Arrays are a type of object in JavaScript and can hold values of any data type.</li>
+                    <li>Arrays use zero-based indexing, meaning the first element is at index 0.</li>
+                </ul>
+                <pre><code class="javascript">
+let fruits = ["Apple", "Banana", "Cherry"];
+console.log(fruits[0]); // Output: Apple
+                </code></pre>
+            </section>
+
+            <!-- Slide 2: Creating Arrays -->
+            <section>
+                <h2>Creating Arrays</h2>
+                <ul>
+                    <li>Arrays can be created using the array literal syntax or the <code>Array</code> constructor.</li>
+                </ul>
+                <pre><code class="javascript">
+// Using array literal
+let colors = ["Red", "Green", "Blue"];
+
+// Using Array constructor
+let numbers = new Array(1, 2, 3, 4);
+                </code></pre>
+            </section>
+
+            <!-- Slide 3: Accessing Array Elements -->
+            <section>
+                <h2>Accessing Array Elements</h2>
+                <ul>
+                    <li>Access elements using their index (position) in the array.</li>
+                    <li>Array indices start at 0.</li>
+                </ul>
+                <pre><code class="javascript">
+let cars = ["Toyota", "Ford", "Tesla"];
+console.log(cars[1]); // Output: Ford
+
+// Changing an element
+cars[1] = "BMW";
+console.log(cars); // Output: ["Toyota", "BMW", "Tesla"]
+                </code></pre>
+            </section>
+
+            <!-- Slide 4: Array Properties and Methods -->
+            <section>
+                <h2>Array Properties and Methods</h2>
+                <ul>
+                    <li><code>length</code>: Returns the number of elements in the array.</li>
+                    <li><code>push()</code>: Adds one or more elements to the end of the array.</li>
+                    <li><code>pop()</code>: Removes the last element from the array.</li>
+                    <li><code>shift()</code>: Removes the first element from the array.</li>
+                    <li><code>unshift()</code>: Adds one or more elements to the beginning of the array.</li>
+                </ul>
+                <pre><code class="javascript">
+let numbers = [1, 2, 3, 4];
+console.log(numbers.length); // Output: 4
+
+numbers.push(5); // Adds 5 to the end
+console.log(numbers); // Output: [1, 2, 3, 4, 5]
+
+numbers.pop(); // Removes the last element
+console.log(numbers); // Output: [1, 2, 3, 4]
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: Iterating Over Arrays -->
+            <section>
+                <h2>Iterating Over Arrays</h2>
+                <ul>
+                    <li>Use loops to iterate over arrays: <code>for</code>, <code>for...of</code>, and <code>forEach()</code>.</li>
+                </ul>
+                <pre><code class="javascript">
+let fruits = ["Apple", "Banana", "Cherry"];
+
+// Using for loop
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+
+// Using for...of loop
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+
+// Using forEach method
+fruits.forEach((fruit) => console.log(fruit));
+                </code></pre>
+            </section>
+
+            <!-- Slide 6: Common Array Methods -->
+            <section>
+                <h2>Common Array Methods</h2>
+                <ul>
+                    <li><code>map()</code>: Creates a new array with the results of calling a function on every element.</li>
+                    <li><code>filter()</code>: Creates a new array with elements that pass a test function.</li>
+                    <li><code>reduce()</code>: Reduces the array to a single value by executing a function on each element.</li>
+                    <li><code>find()</code>: Returns the first element that passes a test function.</li>
+                    <li><code>includes()</code>: Checks if an array contains a specified element.</li>
+                </ul>
+                <pre><code class="javascript">
+let numbers = [1, 2, 3, 4, 5];
+
+// map
+let doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6, 8, 10]
+
+// filter
+let evens = numbers.filter(num => num % 2 === 0);
+console.log(evens); // Output: [2, 4]
+
+// reduce
+let sum = numbers.reduce((total, num) => total + num, 0);
+console.log(sum); // Output: 15
+                </code></pre>
+            </section>
+
+            <!-- Slide 7: Multi-Dimensional Arrays -->
+            <section>
+                <h2>Multi-Dimensional Arrays</h2>
+                <ul>
+                    <li>Arrays can contain other arrays, creating multi-dimensional arrays.</li>
+                    <li>Access elements using multiple indices.</li>
+                </ul>
+                <pre><code class="javascript">
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+console.log(matrix[1][2]); // Output: 6
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: Destructuring Arrays -->
+            <section>
+                <h2>Destructuring Arrays</h2>
+                <ul>
+                    <li>Destructuring allows you to unpack values from arrays into distinct variables.</li>
+                    <li>Introduced in ES6, it simplifies array element assignment.</li>
+                </ul>
+                <pre><code class="javascript">
+let colors = ["Red", "Green", "Blue"];
+let [first, second, third] = colors;
+
+console.log(first); // Output: Red
+console.log(second); // Output: Green
+                </code></pre>
+            </section>
+
+            <!-- Slide 9: Spread and Rest Operators with Arrays -->
+            <section>
+                <h2>Spread and Rest Operators</h2>
+                <ul>
+                    <li><strong>Spread:</strong> Expands elements of an array into individual elements.</li>
+                    <li><strong>Rest:</strong> Collects all remaining elements into an array.</li>
+                </ul>
+                <pre><code class="javascript">
+// Spread operator
+let numbers = [1, 2, 3];
+let moreNumbers = [...numbers, 4, 5];
+console.log(moreNumbers); // Output: [1, 2, 3, 4, 5]
+
+// Rest operator
+function sum(...args) {
+    return args.reduce((acc, num) => acc + num, 0);
+}
+
+console.log(sum(1, 2, 3, 4)); // Output: 10
+                </code></pre>
+            </section>
+
+            <!-- Slide 10: Common Mistakes with Arrays -->
+            <section>
+                <h2>Common Mistakes with Arrays</h2>
+                <ul>
+                    <li>Confusing array indices and values.</li>
+                    <li>Mutating arrays unintentionally (e.g., using <code>push()</code> when not desired).</li>
+                    <li>Using the wrong method for iteration (e.g., modifying the array during <code>forEach()</code>).</li>
+                </ul>
+                <pre><code class="javascript">
+let numbers = [1, 2, 3];
+numbers[3] = 4; // Correct way to add
+numbers[5] = 6; // Leaves undefined gaps
+
+console.log(numbers); // Output: [1, 2, 3, 4]
+                </code></pre>
+            </section>
+
+            <!-- Slide 11: Best Practices -->
+            <section>
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Use array methods like <code>map()</code>, <code>filter()</code>, and <code>reduce()</code> for cleaner, more functional code.</li>
+                    <li>Avoid using <code>var</code> with arrays; prefer <code>let</code> or <code>const</code> for scope and immutability.</li>
+                    <li>Use destructuring for clearer and more concise code.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 12: Summary -->
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Arrays are essential for handling collections of data in JavaScript.</li>
+                    <li>Understanding array methods and properties enhances your ability to manipulate data effectively.</li>
+                    <li>Best practices help in writing clean, efficient, and maintainable code using arrays.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        Reveal.initialize({
+          // The "normal" size of the presentation, aspect ratio will
+          // be preserved when the presentation is scaled to fit different
+          // resolutions. Can be specified using percentage units.
+          width: 1300,
+          height: 1000,
+        });
+    </script>
+
+</body>
+
+</html>
